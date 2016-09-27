@@ -1,0 +1,184 @@
+<header class="index-header main-color navbar ">
+    <div class="row">
+        <div class="col-lg-2 "></div>
+        <div class="col-md-8  text-center ">
+            <div class="">
+                <img src="/img/favicon.png" alt="">
+            </div>
+            <h1 class="headline animated slideInDown">American World Maritime Inc</h1>
+            <h5 class="group">AWMI GROUP</i>
+            </h5>
+        </div>
+        <div class="col-lg-2 "></div>
+    </div>
+
+
+</header>
+
+
+<section class="index-body container-fluid">
+
+    <!--@start Log In Form -->
+    <div class="panel panel-success col-md-5">
+        <div class="panel-heading">
+            <!--<h3 class="panel-title">Log In </h3>-->
+        </div>
+        <div class="panel-body">
+
+            <form class="form-horizontal" name="loginForm" ng-submit="doLogin(loginForm)" novalidate>
+                <fieldset>
+                    <legend>Login</legend>
+                    <div class="form-group"
+                         ng-class="{'has-error':loginForm.email.$invalid &&  loginFormSubmitted, 'has-success':loginForm.email.$valid }">
+                        <label class="col-lg-2 control-label">Email</label>
+                        <div class="col-lg-10">
+                            <input type="email" placeholder="Email" class="form-control" ng-focus="loginError=false"
+                                   name="email" ng-model="login.email" required>
+                        </div>
+                        <div class="col-lg-6">
+                            <h5 ng-if="loginForm.email.$invalid &&  loginFormSubmitted"
+                                class=" help-block pull-right">Email is required
+                            </h5>
+                        </div>
+
+                    </div>
+                    <div class="form-group  "
+                         ng-class="{'has-error':loginForm.password.$invalid &&  loginFormSubmitted, 'has-success':loginForm.password.$valid   }">
+                        <label class="col-lg-2 control-label has-error">Password</label>
+                        <div class="col-lg-10">
+                            <input type="password" placeholder="Password" class="form-control"
+                                   ng-focus="loginError=false"
+                                   name="password" ng-model="login.password" required>
+                        </div>
+                        <div class="col-lg-6" ng-if="loginForm.password.$invalid &&  loginFormSubmitted">
+                            <h5
+                                    class=" help-block pull-right">Password is required
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-10 pull-right">
+                            <button type="submit" class="btn btn-success pull-right"
+                                    name="login">Login <span ng-if="loging">.....</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-12 ">
+                            <div class="alert alert-dismissible  animated  wow  infinite pulse " ng-if="loginError"
+                                 ng-class=loginstatus style="position: inherit;">
+                                <button type="button" class="close " data-dismiss="alert">&times;</button>
+                                <span class="glyphicon  glyphicon-warning-sign "></span>
+                                <strong> {{loginError}}</strong>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+
+            </form>
+        </div>
+        <div class="panel-footer">
+            <button>sign up now</button>
+        </div>
+    </div>
+    <!--@end Login form-->
+
+    <div class="col-md-2"></div>
+
+    <!--@start SignUp Form -->
+    <div class="panel panel-primary  col-md-5 ">
+        <div class="panel-heading">
+            <!--<h3 class="panel-title">Sign Up</h3>-->
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal " name="signupForm" ng-submit="doSignUp(signupForm)" novalidate>
+                <fieldset>
+                    <legend>Sign Up</legend>
+                    <div class="form-group"
+                         ng-class="{'has-error':signupForm.name.$invalid &&  signupFormSubmitted, 'has-success':signupForm.name.$valid }">
+                        <label class="col-lg-2 control-label">Full Name</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" name="name" ng-model="signup.name"
+                                   placeholder="Insert Full Name" required>
+                        </div>
+                        <div class="col-lg-6 col-xs-offset-4">
+                            <h5 ng-if="signupForm.name.$invalid &&  signupFormSubmitted"
+                                class=" help-block ">Name is required
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="form-group  has-feedback"
+                         ng-class="{'has-error':(signupForm.email.$invalid  && signupFormSubmitted ) || emailCheckError  ,
+                         'has-success':signupForm.email.$valid && !emailCheckError}">
+                        <label class="col-lg-2 control-label">Email</label>
+                        <div class="col-lg-10">
+                            <input type="email" class="form-control" name="email" ng-model="signup.email"
+                                   ng-change="checkEmail()" placeholder="Email" required>
+                            <span ng-if="emailCheckError"
+                                  class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        </div>
+                        <div class="col-lg-6 col-xs-offset-4 ">
+                            <h5 ng-if="signupForm.email.$invalid &&  signupFormSubmitted"
+                                class=" help-block ">Email address is required
+                            </h5>
+                            <h5 ng-if="emailCheckError" class="help-block text-center">
+                                Email already used
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="form-group"
+                         ng-class="{'has-error':(signupForm.password.$invalid  && signupFormSubmitted ),
+                                    'has-success':signupForm.password.$valid }">
+                        <label class="col-lg-2 control-label">Password</label>
+                        <div class="col-lg-10">
+                            <input type="password" class="form-control" name="password" ng-model="signup.password"
+                                   placeholder="Password" required minlength="4">
+
+                        </div>
+                        <div class=" col-lg-6 col-xs-offset-4"
+                             ng-if="signupForm.password.$error.required &&  signupFormSubmitted">
+                            <h5
+                                    class=" help-block ">Password is required
+                            </h5>
+                        </div>
+                        <div class="col-lg-8 col-xs-offset-4 "
+                             ng-if="signupForm.password.$error.minlength &&  signupFormSubmitted">
+                            <h5
+                                    class=" help-block ">Password must be at least 4 character
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-10 pull-right">
+                            <button type="submit" class="btn btn-primary">Sign Up</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+
+
+        </div>
+        <div class="panel-footer">
+            <a href="" class="blue ">Already have an account ?</a>
+            <a href="" class="warning pull-right">Forgot password ?</a>
+        </div>
+    </div>
+    <!--@end SignUp form-->
+    <div ng-if="signupSuccess">
+        <div class="alert alert-dismissible alert-success animated wow fadeInRight  pulse"
+             style="position:absolute; top:30px;right: 20px;">
+            <button type="button" class="close" data-dismiss="alert" ng-click="closesignup()"
+            >&times;</button>
+            <span class="glyphicon  glyphicon-ok-circle"></span>
+            <strong>Well done!</strong> Account successfully created <a href="#" class="alert-link">wait for
+            confirmation</a>. <br>
+            <strong>Name:</strong>{{user.name}}<br>
+            <strong>Email:</strong>{{user.email}}<br>
+
+
+        </div>
+    </div>
+
+</section>
+
+

@@ -1,0 +1,74 @@
+<main>
+    <div ng-include="global.navUrl"></div>
+    <section class="coversheet-body">
+
+        <p>coversheet</p>
+
+
+        <div class="panel panel-success panel-collapse">
+            <div class="panel-heading row">
+                <div class="col-md-4">
+                    <h4 class="panel-title ">Cover Sheet List</h4>
+                </div>
+                <div class="col-md-4 bg-white">
+                    <div class=" form-group ">
+                        <input class="form-control" type="search" ng-model="search" placeholder="search">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <button class="btn btn-primary pull-right" ng-click="modelInsertShow()">Add New</button>
+                </div>
+
+
+            </div>
+            <div class="panel-body">
+                <div class="bs-example" data-example-id="hoverable-table">
+                    <h4 class="text-center" ng-if="!allCoversheet">Loading......</h4>
+                    <div class="table-responsive">
+                        <table class="table table-hover  table-striped table-bordered">
+                            <thead>
+                            <tr>
+
+                                <th ng-repeat="(key, value) in allCoversheet[0]">{{key | uppercase}}</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="cs in allCoversheet | filter:search">
+
+
+                                <td ng-repeat="(key, value) in cs   ">{{value}}</td>
+                                <td>
+                                    <button class="btn btn-info" ng-click="modelDetailShow(cs)">Details</button>
+                                </td>
+
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <div class="panel-footer">
+                <ul class="pagination">
+                    <li class="disabled"><a href="">&laquo;</a></li>
+                    <li><a href="">1</a></li>
+                    <li ng-repeat="cs in allCoversheet  track by $index">
+                        <a href="">2</a>
+                        <a href="">2</a>
+                        <a href="">2</a>
+                    </li>
+
+                    <li><a href="">&raquo;</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div ng-include="'templates/dashboard/coversheet-insert-model.html'"></div>
+        <div ng-include="'templates/dashboard/coversheet-details-model.html'"></div>
+    </section>
+
+
+</main>
+
